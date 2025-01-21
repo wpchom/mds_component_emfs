@@ -9,7 +9,7 @@ config("mds_component_emfs_config") {
 }
 
 static_library("mds_component_emfs") {
-  sources = [ "src/emfs.c" ]
+  sources = [ "src/mds_emfs.c" ]
 
   public_configs = [ ":mds_component_emfs_config" ]
 

@@ -10,7 +10,8 @@
  * See the Mulan PSL v2 for more details.
  **/
 /* Include ----------------------------------------------------------------- */
-#include "emfs.h"
+#include "mds_emfs.h"
+#include "mds_log.h"
 
 /* Define ------------------------------------------------------------------ */
 #ifndef MDS_EMFS_LOCK_TIMEOUT
@@ -827,7 +828,12 @@ MDS_Err_t MDS_EMFS_FileRead(MDS_EMFS_FileDesc_t *fd, intptr_t ofs, uint8_t *buff
 
         err = EMFS_FileSystemReadCheckPage(fd->fs, fd->fs->readOfs);
         if (err != MDS_EOK) {
+            MDS_LOG_E("[emfs] read file err:%d try to reload on fs:%p ofs:%u", err, fd->fs, fd->fs->readOfs);
             err = EMFS_FileSystemSearchLastPage(fd->fs);
+            if (err != MDS_EOK) {
+                MDS_LOG_E("[emfs] read file err:%d try to research on fs:%p device:%p", err, fd->fs,
+                          fd->fs->init.device);
+            }
         }
 
         if (EMFS_FileDataGetCheck(file) != EMFS_FileDataSingleCheck(file)) {
