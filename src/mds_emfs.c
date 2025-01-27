@@ -335,7 +335,7 @@ static MDS_Err_t EMFS_FileSystemEraseNextPage(MDS_EMFS_FileSystem_t *fs, size_t 
         return (err);
     }
 
-    err = DEV_STORAGE_PeriphErase(fs->init.device, writeBlkS, writeBlkE - writeBlkS + 1);
+    err = DEV_STORAGE_PeriphErase(fs->init.device, writeBlkS, writeBlkE - writeBlkS + 1, NULL);
     DEV_STORAGE_PeriphClose(fs->init.device);
 
     return (err);
@@ -447,7 +447,7 @@ MDS_Err_t MDS_EMFS_Mkfs(DEV_STORAGE_Periph_t *device, size_t pageSize)
     }
 
     uint16_t check = 0;
-    err = DEV_STORAGE_PeriphErase(device, 0, DEV_STORAGE_PeriphBlockNums(device));
+    err = DEV_STORAGE_PeriphErase(device, 0, DEV_STORAGE_PeriphBlockNums(device), NULL);
     for (size_t ofs = pageSize; (err == MDS_EOK) && (ofs > 0); ofs -= sizeof(buff)) {
         if (ofs > sizeof(buff)) {
             check = EMFS_DataCheckCalculate(check, buff, sizeof(buff));
