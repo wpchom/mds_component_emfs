@@ -11,7 +11,6 @@
  **/
 /* Include ----------------------------------------------------------------- */
 #include "mds_emfs.h"
-#include "mds_log.h"
 
 /* Define ------------------------------------------------------------------ */
 #ifndef MDS_EMFS_LOCK_TIMEOUT
@@ -601,7 +600,7 @@ static void EMFS_FileRemoveData(MDS_EMFS_FileSystem_t *fs, EMFS_FileHeader_t *fi
     EMFS_FileSystemSetPageLength(header, length - split);
 }
 
-MDS_Err_t MDS_EMFS_Unlink(MDS_EMFS_FileSystem_t *fs, MDS_EMFS_FileId_t id)
+MDS_Err_t MDS_EMFS_Remove(MDS_EMFS_FileSystem_t *fs, MDS_EMFS_FileId_t id)
 {
     MDS_ASSERT(fs != NULL);
 

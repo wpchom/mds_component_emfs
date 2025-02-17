@@ -50,13 +50,13 @@ extern MDS_Err_t MDS_EMFS_Mount(MDS_EMFS_FileSystem_t *fs, const MDS_EMFS_FsInit
 extern MDS_Err_t MDS_EMFS_Unmout(MDS_EMFS_FileSystem_t *fs);
 
 extern MDS_EMFS_FileDesc_t *MDS_EMFS_FileGetOpened(MDS_EMFS_FileSystem_t *fs, MDS_EMFS_FileId_t id);
-extern MDS_Err_t MDS_EMFS_Unlink(MDS_EMFS_FileSystem_t *fs, MDS_EMFS_FileId_t id);
+extern MDS_Err_t MDS_EMFS_Remove(MDS_EMFS_FileSystem_t *fs, MDS_EMFS_FileId_t id);
 extern MDS_Err_t MDS_EMFS_Rename(MDS_EMFS_FileSystem_t *fs, MDS_EMFS_FileId_t oldid, MDS_EMFS_FileId_t newid);
+extern MDS_Err_t MDS_EMFS_FileSize(MDS_EMFS_FileDesc_t *fd, size_t *datasz, size_t *size);
 
 extern MDS_Err_t MDS_EMFS_FileCreate(MDS_EMFS_FileDesc_t *fd, MDS_EMFS_FileSystem_t *fs, MDS_EMFS_FileId_t id);
 extern MDS_Err_t MDS_EMFS_FileOpen(MDS_EMFS_FileDesc_t *fd, MDS_EMFS_FileSystem_t *fs, MDS_EMFS_FileId_t id);
 extern MDS_Err_t MDS_EMFS_FileClose(MDS_EMFS_FileDesc_t *fd);
-extern MDS_Err_t MDS_EMFS_FileSize(MDS_EMFS_FileDesc_t *fd, size_t *datasz, size_t *size);
 extern size_t MDS_EMFS_FileTruncate(MDS_EMFS_FileDesc_t *fd, intptr_t ofs);
 extern MDS_Err_t MDS_EMFS_FileRead(MDS_EMFS_FileDesc_t *fd, intptr_t ofs, uint8_t *buff, size_t size, size_t *read);
 extern MDS_Err_t MDS_EMFS_FileWrite(MDS_EMFS_FileDesc_t *fd, intptr_t ofs, const uint8_t *buff, size_t size,
